@@ -1,11 +1,14 @@
 import React from 'react'
 import Nav from '../components/Nav'
+import Hero from '../components/Hero'
+import Features from '../components/Features'
 
 function Homepage() {
   return (
     <div>
       <Nav/>
-      <h1>Landing page</h1>
+      <Hero/>
+      <Features/>
     </div>
   )
 }
