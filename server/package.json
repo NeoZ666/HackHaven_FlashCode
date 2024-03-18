@@ -1,0 +1,14 @@
+{
+  "name": "flashcode",
+  "version": "1.0.0",
+  "description": "This is the server side code of FlashCode",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nilanchala, Pranav, Usmaan, Harsh",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.3"
+  }
+}
