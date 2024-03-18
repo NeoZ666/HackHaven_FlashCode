@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Login() {
   return (
@@ -83,9 +84,9 @@ function Login() {
 
                 <p className="mt-4 flex gap-2 text-gray-500 sm:mt-0 justify-center items-center">
                   Don't have an account?
-                  <a href="/signup" className="text-gray-700 underline">
+                  <Link to="/signup"  className="text-gray-700 underline">
                     Sign up
-                  </a>
+                  </Link>
                 </p>
               </div>
             </form>

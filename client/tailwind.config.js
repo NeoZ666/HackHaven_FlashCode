@@ -5,7 +5,12 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors:{
+        violet: "#8A2BE2",
+        amethyst: "#9966CC"
+      }
+    },
   },
   plugins: [],
 }
