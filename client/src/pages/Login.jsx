@@ -58,20 +58,23 @@ function Login() {
               </div>
 
               <div className="col-span-6 sm:col-span-3">
+ 
+
                 <label
                   htmlFor="Password"
-                  className="block text-sm font-medium text-gray-700"
+                  className="relative block overflow-hidden border-b border-gray-200 bg-transparent pt-3 focus-within:border-blue-600"
                 >
-                  {" "}
-                  Password{" "}
-                </label>
+                  <input
+                    type="password"
+                    id="Password"
+                    placeholder="Password"
+                    className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                  />
 
-                <input
-                  type="password"
-                  id="Password"
-                  name="password"
-                  className="mt-1 w-full h-12 rounded-md border-gray-600 outline-blue-400 bg-white text-sm text-gray-700 shadow-gray-600 shadow-md"
-                />
+                  <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
+                    Email
+                  </span>
+                </label>
               </div>
               <div className="col-span-6"></div>
 
@@ -84,7 +87,7 @@ function Login() {
 
                 <p className="mt-4 flex gap-2 text-gray-500 sm:mt-0 justify-center items-center">
                   Don't have an account?
-                  <Link to="/signup"  className="text-gray-700 underline">
+                  <Link to="/signup" className="text-gray-700 underline">
                     Sign up
                   </Link>
                 </p>
