@@ -1,34 +1,76 @@
-// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.24;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
-// Uncomment this line to use console.log
-// import "hardhat/console.sol";
+contract ComplaintsContract {
+    enum Status { Open, Pending, Closed, Reopen }
+    enum Handler { Desk0, Desk1, Desk2, Desk3, Desk4 }
 
-contract Lock {
-    uint public unlockTime;
-    address payable public owner;
-
-    event Withdrawal(uint amount, uint when);
-
-    constructor(uint _unlockTime) payable {
-        require(
-            block.timestamp < _unlockTime,
-            "Unlock time should be in the future"
-        );
-
-        unlockTime = _unlockTime;
-        owner = payable(msg.sender);
+    struct Complaint {
+        string title;
+        string description;
+        Status status;
+        Handler handler;
     }
 
-    function withdraw() public {
-        // Uncomment this line, and the import of "hardhat/console.sol", to print a log in your terminal
-        // console.log("Unlock time is %o and block timestamp is %o", unlockTime, block.timestamp);
+    mapping(uint256 => Complaint) public complaints;
+    uint256 public complaintsCount;
 
-        require(block.timestamp >= unlockTime, "You can't withdraw yet");
-        require(msg.sender == owner, "You aren't the owner");
+    event NewComplaint(uint256 indexed id, string title, string description, Status status, Handler handler);
+    event ComplaintStatusUpdated(uint256 indexed id, Status status);
 
-        emit Withdrawal(address(this).balance, block.timestamp);
+    function createComplaint(string memory _title, string memory _description, Handler _handler) external {
+        complaints[complaintsCount] = Complaint(_title, _description, Status.Open, _handler);
+        emit NewComplaint(complaintsCount, _title, _description, Status.Open, _handler);
+        complaintsCount++;
+    }
 
-        owner.transfer(address(this).balance);
+    function updateComplaintStatus(uint256 _id, Status _status) external {
+        require(_id < complaintsCount, "Complaint does not exist");
+        complaints[_id].status = _status;
+        emit ComplaintStatusUpdated(_id, _status);
+    }
+
+    function getAllComplaints() external view returns (Complaint[] memory) {
+        Complaint[] memory allComplaints = new Complaint[](complaintsCount);
+        for (uint256 i = 0; i < complaintsCount; i++) {
+            allComplaints[i] = complaints[i];
+        }
+        return allComplaints;
+    }
+
+    function getComplaintsByStatus(Status _status) external view returns (Complaint[] memory) {
+        uint256 count;
+        for (uint256 i = 0; i < complaintsCount; i++) {
+            if (complaints[i].status == _status) {
+                count++;
+            }
+        }
+        Complaint[] memory result = new Complaint[](count);
+        uint256 index;
+        for (uint256 i = 0; i < complaintsCount; i++) {
+            if (complaints[i].status == _status) {
+                result[index++] = complaints[i];
+            }
+        }
+        return result;
+    }
+
+    function getComplaintsByHandler(Handler _handler) external view returns (Complaint[] memory) {
+        uint256 count;
+        for (uint256 i = 0; i < complaintsCount; i++) {
+            if (complaints[i].handler == _handler) {
+                count++;
+            }
+        }
+        Complaint[] memory result = new Complaint[](count);
+        uint256 index;
+        for (uint256 i = 0; i < complaintsCount; i++) {
+            if (complaints[i].handler == _handler) {
+                result[index++] = complaints[i];
+            }
+        }
+        return result;
     }
 }
+
+0x569c1F82A4A2716452c93cA9c5a448e58caee816

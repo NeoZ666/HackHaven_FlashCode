@@ -1,0 +1,263 @@
+[
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "enum ComplaintsContract.Status",
+				"name": "status",
+				"type": "uint8"
+			}
+		],
+		"name": "ComplaintStatusUpdated",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "title",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "description",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "enum ComplaintsContract.Status",
+				"name": "status",
+				"type": "uint8"
+			},
+			{
+				"indexed": false,
+				"internalType": "enum ComplaintsContract.Handler",
+				"name": "handler",
+				"type": "uint8"
+			}
+		],
+		"name": "NewComplaint",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "complaints",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "title",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "description",
+				"type": "string"
+			},
+			{
+				"internalType": "enum ComplaintsContract.Status",
+				"name": "status",
+				"type": "uint8"
+			},
+			{
+				"internalType": "enum ComplaintsContract.Handler",
+				"name": "handler",
+				"type": "uint8"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "complaintsCount",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_title",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_description",
+				"type": "string"
+			},
+			{
+				"internalType": "enum ComplaintsContract.Handler",
+				"name": "_handler",
+				"type": "uint8"
+			}
+		],
+		"name": "createComplaint",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllComplaints",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "title",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "description",
+						"type": "string"
+					},
+					{
+						"internalType": "enum ComplaintsContract.Status",
+						"name": "status",
+						"type": "uint8"
+					},
+					{
+						"internalType": "enum ComplaintsContract.Handler",
+						"name": "handler",
+						"type": "uint8"
+					}
+				],
+				"internalType": "struct ComplaintsContract.Complaint[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "enum ComplaintsContract.Handler",
+				"name": "_handler",
+				"type": "uint8"
+			}
+		],
+		"name": "getComplaintsByHandler",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "title",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "description",
+						"type": "string"
+					},
+					{
+						"internalType": "enum ComplaintsContract.Status",
+						"name": "status",
+						"type": "uint8"
+					},
+					{
+						"internalType": "enum ComplaintsContract.Handler",
+						"name": "handler",
+						"type": "uint8"
+					}
+				],
+				"internalType": "struct ComplaintsContract.Complaint[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "enum ComplaintsContract.Status",
+				"name": "_status",
+				"type": "uint8"
+			}
+		],
+		"name": "getComplaintsByStatus",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "title",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "description",
+						"type": "string"
+					},
+					{
+						"internalType": "enum ComplaintsContract.Status",
+						"name": "status",
+						"type": "uint8"
+					},
+					{
+						"internalType": "enum ComplaintsContract.Handler",
+						"name": "handler",
+						"type": "uint8"
+					}
+				],
+				"internalType": "struct ComplaintsContract.Complaint[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "enum ComplaintsContract.Status",
+				"name": "_status",
+				"type": "uint8"
+			}
+		],
+		"name": "updateComplaintStatus",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+]
